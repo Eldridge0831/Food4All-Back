@@ -14,6 +14,9 @@ module.exports = {
       category: {
         type: Sequelize.STRING
       },
+      recipe: {
+        type: Sequelize.JSON
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -6,6 +6,7 @@ module.exports = {
       id: '1',
       commentSection: 'hello',
       category: '',
+      recipe: JSON.stringify({1:1}),
       createdAt: new Date(),
       updatedAt: new Date()
   }], {});
