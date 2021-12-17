@@ -66,7 +66,7 @@ app.get("/user", (req, res) => {
 });
 
 // Add a User
-app.post("/users", async (req, res) => {
+app.post("/user", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   await Users.create({
     name: req.body.name,
@@ -111,14 +111,14 @@ app.get("/auth/logout", (req, res) => {
 });
 
 // see favorites in DB
-app.get("/components/favorite", async (req, res) => {
+app.get("/favorite", async (req, res) => {
   const favorite = await favorites.findall();
   console.log("favorties in DB: ", favorite);
   res.status(200).send(JSON.stringify(favorite));
 });
 
 // To Update a User -> change it for favorites
-app.put("/favorites/modify/:id", async (req, res) => {
+app.put("/favorite/modify/:id", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let favorites = req.params["id"];
   if (!err) {
@@ -139,7 +139,7 @@ app.put("/favorites/modify/:id", async (req, res) => {
 });
 
 // Delete a User -> change it for favorites
-app.delete("/favorites/:", async (req, res) => {
+app.delete("/favorite/:id", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let id = req.params["id"];
   await favorites.destroy({
