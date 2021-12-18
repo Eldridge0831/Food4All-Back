@@ -9,6 +9,33 @@ const { sequelize, Model, dataTypes } = require("sequelize");
 const users = require("../models").User;
 const favorites = require("../models").favorites;
 
+let user = {};
+
+passport.serializeUser((user, cb) => {
+  cb(null, user.id);
+});
+
+passport.deserializeUser(async (id, cb) => {
+  const user = await User.findOne({ where: { id } }).catch((err) => {
+    cb(err, null);
+  });
+
+/*------Google Passport-------*/
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: keys.GOOGLE.clientID,
+      clientSecret: keys.GOOGLE.clientSecret,
+      callbackURL: "/auth/google/callback",
+    },
+    (accessToken, refreshToken, profile, cb) => {
+      console.log(chalk.blue(JSON.stringify(profile)));
+      user.findorCreate = { ...profile };
+      return cb(null, profile);
+    }
+  )
+);
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -64,6 +91,7 @@ router.get("/auth/logout", (req, res) => {
   console.log("logging out!");
   user = {};
   res.redirect("/"); //redirect to home page
+});
 });
 
 module.exports = router;
