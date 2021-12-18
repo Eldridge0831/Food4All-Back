@@ -17,6 +17,18 @@ router.get("/favorite", async (req, res) => {
   res.status(200).send(JSON.stringify(foundFavorite));
 });
 
+router.post("/favorite", async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  await favorites.create({
+    commentSection: req.body.commentSection,
+    category: req.body.category,
+    recipe_id: req.body.recipe_id,
+    recipe: req.body.recipe,
+    user_id: req.body.user_id,
+  });
+  res.send('{"recipeFavorited": "true"}');
+});
+
 // To Update a User -> change it for favorites
 router.put("/favorite/modify/:id", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
@@ -35,16 +47,16 @@ router.put("/favorite/modify/:id", async (req, res) => {
       }
     );
   }
-  res.send('{"faovritesUpdated": "true"}');
+  res.send('{"favoritesUpdated": "true"}');
 });
 
 // Delete a User -> change it for favorites
-router.delete("/favorite/:id", async (req, res) => {
+router.delete("/favorite/:recipe_id", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  let id = req.params["id"];
+  let recipe_id = req.params["recipe_id"];
   await favorites.destroy({
     where: {
-      id: id,
+      recipe_id: recipe_id,
     },
   });
   res.send('{"favoritesDeleted": "true"}');

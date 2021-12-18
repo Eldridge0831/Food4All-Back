@@ -5,8 +5,10 @@ module.exports = {
     await queryInterface.bulkInsert('favorites', [{
       id: '1',
       commentSection: 'hello',
-      category: '',
+      category: 'chicken',
+      recipe_id: 'chicken biscuits',
       recipe: JSON.stringify({1:1}),
+      user_id: '2',
       createdAt: new Date(),
       updatedAt: new Date()
   }], {});
