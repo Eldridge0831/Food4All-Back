@@ -14,8 +14,14 @@ module.exports = {
       category: {
         type: Sequelize.STRING
       },
+      recipe_id: {
+        type: Sequelize.STRING
+      },
       recipe: {
         type: Sequelize.JSON
+      },
+      user_id: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
