@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   favorites.init({
     commentSection: DataTypes.STRING,
     category: DataTypes.STRING,
-    // id: DataTypes.NUMBER,
+    recipe_id: DataTypes.NUMBER,
     recipe: DataTypes.JSON
   }, {
     sequelize,

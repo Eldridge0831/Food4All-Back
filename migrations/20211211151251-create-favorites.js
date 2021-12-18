@@ -17,6 +17,12 @@ module.exports = {
       recipe: {
         type: Sequelize.JSON
       },
+      recipe_id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
