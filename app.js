@@ -4,14 +4,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require("cors");
-
+const helmet = require("helmet");
+const bodyParser = require("body-parser");
+require("dotenv").config();
+const cookieSession = require("cookie-session");
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const routes = require("./routes");
 
-// database requirements
-const { sequelize, Model, dataTypes } = require("sequelize");
-const users = require("./models").users;
-const favorites = require("./models").favorites;
+// require("C:\Users\vivek\DigitalCrafts\NewCapstone\Food4All-Front\src\Auth\auth0-provider-with-history.js");
+// require("./auth/passportGoogleSSO");
+
+// require("./models/user");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -25,14 +28,27 @@ app.set('view engine', 'jade');
 
 app.use(cors());
 app.use(logger('dev'));
+app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(
+  cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [process.env.COOKIE_KEY],
+  })
+);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/testAPI", testAPIRouter);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/routes/v1",routes);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -49,15 +65,15 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-let user = {};
+// let user = {};
 
-passport.serializeUser((user, cb) => {
-  cb(null, user);
-});
+// passport.serializeUser((user, cb) => {
+//   cb(null, user);
+// });
 
-passport.deserializeUser((user, cb) => {
-  cb(null, user);
-});
+// passport.deserializeUser((user, cb) => {
+//   cb(null, user);
+// });
 
 /*------Google Passport-------*/
 

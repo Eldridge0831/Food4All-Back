@@ -9,6 +9,31 @@ const { sequelize, Model, dataTypes } = require("sequelize");
 const users = require("../models").User;
 const favorites = require("../models").favorites;
 
+const successUrl = "http://localhost:3000/login/success";
+const errorUrl = "http://localhost:3000/login/error";
+
+// path to start the OAuth
+router.get(
+  "/login/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+  })
+);
+
+// Oauth callback URL
+router.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    failureMessage: "Cannot login to Google, please try again later!",
+    failureRedirect: errorUrl,
+    successRedirect: successUrl,
+  }),
+  (req, res) => {
+    console.log("User: ", req.user);
+    res.send("Thanks for signing in!");
+  }
+);
+
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -22,20 +47,21 @@ router.get("/user", async (req, res) => {
 });
 
 // Add a User
-router.post("/user", async (req, res) => {
+router.post("/register", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   await users.create({
-    name: req.body.name,
+    fullName: req.body.name,
     email: req.body.email,
+    password: req.body.password
   });
   res.send('{"userRegistered": "true"}');
 });
 
 // Login a User
-router.post("/loginAttempt", async (req, res) => {
+router.post("/login", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  const username = req.body.username;
-  console.log(username);
+  const email = req.body.username;
+  console.log(email);
   const password = req.body.password;
   console.log(password);
   Users.findOne({
