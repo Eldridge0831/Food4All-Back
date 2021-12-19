@@ -17,6 +17,21 @@ router.get("/favorite", async (req, res) => {
   res.status(200).send(JSON.stringify(foundFavorite));
 });
 
+// see favorites by category
+router.get("/favorite/:user_id/:category", async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  const user_id = req.params["user_id"];
+  const category = req.params["category"];
+  const categoryData = await favorites.findAll({
+    where: {
+      user_id: user_id,
+      category: category,
+    }
+  });
+
+  res.status(200).send(categoryData);
+});
+
 router.post("/favorite", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   await favorites.create({
@@ -30,22 +45,22 @@ router.post("/favorite", async (req, res) => {
 });
 
 // To Update a User -> change it for favorites
-router.put("/favorite/modify/:id", async (req, res) => {
+router.put("/favorite/modify/:recipe_id", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  let favorites = req.params["id"];
+  const favorites = req.params["recipe_id"];
+  // console.log(req.params["recipe_id"])
   if (!err) {
-    favorites.update(
-      {
-        id: req.body.id,
+    favorites.update({        
         commentSection: req.body.commentSection,
         category: req.body.category,
-      },
-      {
+        recipe_id: req.body.recipe_id,
+        recipe: req.body.recipe,
+        user_id: req.body.user_id
+      },{
         where: {
           favorites: favorites,
         },
-      }
-    );
+    });
   }
   res.send('{"favoritesUpdated": "true"}');
 });
