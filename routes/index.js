@@ -47,9 +47,8 @@ router.post("/favorite", async (req, res) => {
 // To Update a User -> change it for favorites
 router.put("/favorite/modify/:recipe_id", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  const favorites = req.params["recipe_id"];
-  // console.log(req.params["recipe_id"])
-  if (!err) {
+  let recipe_id = req.params["recipe_id"];
+  if (res===200){
     favorites.update({        
         commentSection: req.body.commentSection,
         category: req.body.category,
@@ -58,10 +57,10 @@ router.put("/favorite/modify/:recipe_id", async (req, res) => {
         user_id: req.body.user_id
       },{
         where: {
-          favorites: favorites,
+          recipe_id: recipe_id,
         },
     });
-  }
+} 
   res.send('{"favoritesUpdated": "true"}');
 });
 
