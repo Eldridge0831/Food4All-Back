@@ -1,10 +1,16 @@
 {
   "development": {
-    "username": "charleseldridge",
-    "password": "8896",
-    "database": "capstone_development",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "username": "sbfqoevticefec",
+    "password": "68e0f1a3c2f92f8dfb053a06a2d68d13574ef776549e5fbfe8f9ede45d832293",
+    "database": "d9j7rst0d5gfjo",
+    "host": "ec2-44-198-146-224.compute-1.amazonaws.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+        }
+      }
   },
   "production": {
     "use_env_variable": "DATABASE_URL"
