@@ -1,13 +1,35 @@
 {
   "development": {
-    "username": "charleseldridge",
-    "password": "8896",
-    "database": "capstone_development",
-    "host": "127.0.0.1",
+    "username": "iajcsmjrbyhmfv",
+    "password": "6db8089571673b957903c2034285f6d94f7fbd68ae0f908a3f8ec7590734d1e8",
+    "database": "d51homagj0e0ou",
+    "host": "ec2-34-198-122-185.compute-1.amazonaws.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+        }
+      }
+  },
+  "test": {
+    "username": "iajcsmjrbyhmfv",
+    "password": "6db8089571673b957903c2034285f6d94f7fbd68ae0f908a3f8ec7590734d1e8",
+    "database": "d51homagj0e0ou",
+    "host": "ec2-34-198-122-185.compute-1.amazonaws.com",
     "dialect": "postgres"
   },
   "production": {
-    "use_env_variable": "DATABASE_URL"
+    "username": "iajcsmjrbyhmfv",
+    "password": "6db8089571673b957903c2034285f6d94f7fbd68ae0f908a3f8ec7590734d1e8",
+    "database": "d51homagj0e0ou",
+    "host": "ec2-34-198-122-185.compute-1.amazonaws.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+    "ssl": {
+      "require": true,
+      "rejectUnauthorized": false
+      }
+    }
   }
 }
-

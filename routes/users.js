@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
+// const passport = require("passport");
+// const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 // database requirements
 const { sequelize, Model, dataTypes } = require("sequelize");
