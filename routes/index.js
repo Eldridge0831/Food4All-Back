@@ -11,9 +11,13 @@ router.get('/', function(req, res, next) {
 });
 
 // see favorites in DB
-router.get("/favorite", async (req, res) => {
-  const foundFavorite = await favorites.findAll();
-  // console.log("favorties in DB: ", favorite);
+router.get("/favorite/:user_id", async (req, res) => {
+  const user_id = req.params["user_id"];
+  const foundFavorite = await favorites.findAll({
+    where: {
+      user_id: user_id,
+    }
+  });
   res.status(200).send(JSON.stringify(foundFavorite));
 });
 
@@ -48,7 +52,7 @@ router.post("/favorite", async (req, res) => {
 router.put("/favorite/modify/:recipe_id", async (req, res) => {
   res.setHeader("Content-Type", "application/json");
   let recipe_id = req.params["recipe_id"];
-  if (res===200){
+  // if (res===200){
     favorites.update({        
         commentSection: req.body.commentSection,
         category: req.body.category,
@@ -60,7 +64,7 @@ router.put("/favorite/modify/:recipe_id", async (req, res) => {
           recipe_id: recipe_id,
         },
     });
-} 
+// } 
   res.send('{"favoritesUpdated": "true"}');
 });
 
