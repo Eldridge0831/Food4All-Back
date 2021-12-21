@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "sbfqoevticefec",
-    "password": "68e0f1a3c2f92f8dfb053a06a2d68d13574ef776549e5fbfe8f9ede45d832293",
-    "database": "d9j7rst0d5gfjo",
-    "host": "ec2-44-198-146-224.compute-1.amazonaws.com",
+    "username": "iajcsmjrbyhmfv",
+    "password": "6db8089571673b957903c2034285f6d94f7fbd68ae0f908a3f8ec7590734d1e8",
+    "database": "d51homagj0e0ou",
+    "host": "ec2-34-198-122-185.compute-1.amazonaws.com",
     "dialect": "postgres",
     "dialectOptions": {
       "ssl": {
@@ -12,8 +12,24 @@
         }
       }
   },
+  "test": {
+    "username": "iajcsmjrbyhmfv",
+    "password": "6db8089571673b957903c2034285f6d94f7fbd68ae0f908a3f8ec7590734d1e8",
+    "database": "d51homagj0e0ou",
+    "host": "ec2-34-198-122-185.compute-1.amazonaws.com",
+    "dialect": "postgres"
+  },
   "production": {
-    "use_env_variable": "DATABASE_URL"
+    "username": "iajcsmjrbyhmfv",
+    "password": "6db8089571673b957903c2034285f6d94f7fbd68ae0f908a3f8ec7590734d1e8",
+    "database": "d51homagj0e0ou",
+    "host": "ec2-34-198-122-185.compute-1.amazonaws.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+    "ssl": {
+      "require": true,
+      "rejectUnauthorized": false
+      }
+    }
   }
 }
-
