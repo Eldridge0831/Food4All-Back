@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(_models) {
+    static associate(models) {
       // define association here
     }
   };
@@ -25,3 +25,13 @@ module.exports = (sequelize, DataTypes) => {
   });
   return favorites;
 };
+
+// Add a User
+router.post("/user", async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  await users.create({
+    name: req.body.name,
+    email: req.body.email,
+  });
+  res.send('{"userRegistered": "true"}');
+});

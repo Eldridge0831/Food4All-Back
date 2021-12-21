@@ -1,15 +1,21 @@
 {
   "name": "backend",
   "version": "0.0.0",
+  "main": "index.js",
   "engines": {
     "node": "14.x"
   },
   "private": true,
   "scripts": {
-    "dev": "nodemon ./bin/www",
-    "db:reset": "sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": " (https://github.com/Eldridge0831/Food4All-Back.git)"
+  },
+  "author": "Vivek Thakore, Charles Eldridge, Tim Johns",
+  "license": "ISC",
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
